@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--<link rel="stylesheet" href="{{url_for('static', filename='static/style.css')}}"-->
+    <link rel="stylesheet" href="static/style.css">
+    <title>
+        College input money stuff
+    </title>
+    <!--<link rel="stylesheet" href="style.css">-->
+    <style>
+        body {
+            text-align: left;
+            margin-left: 2vw;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>PIMCO Funds Calculator</h1>
+    <div>
+        <div id="left">
+            <div>
+
+                <p>Tuition:
+                    <select name="tuition" id="tuition">
+                        <option value="tuition_year">Year</option>
+                        <option value="tuition_month">Semester</option>
+                    </select><!--(include books and miscellaneous costs)-->
+                    <br>
+                <input type="text" name="tuition" id="tuition_amount"
+                    placeholder="Enter amount here" value="" size = 15vw title = "Enter total cost of tuition">
+                    <br><br>
+                </p>
+        
+                <p>Rent/Utilities: 
+                    <select name="rentDrop" id="rentDrop">
+                        <option value="fullYear">Year</option>
+                        <option value="ten_month">10 Month Term</option>
+                    </select>
+                    <br>
+                <input type="text" name="rentText" id="rentText"
+                    placeholder="Enter amount here" value="" size = 15vw title = "Enter total cost of utilities/rent ex. Electricity, water, repair...">
+                    <br><br>
+                </p>
+                
+
+            <p>Scholarships/Aid: <!--(drop down for specific semester)-->
+                <select name="aidType" id="aidType">
+                    <option value="semester">Semester</option>
+                    <option value="year">Year</option>
+                </select>
+                <br>
+                <input type="text" name="aidTypeText" id="aidTypeText"
+                    placeholder="Enter amount here" value="" size = 15vw title="Enter amount of scholarships/aid received">
+                <br><br>
+                </p>
+        
+                <p>Loans: <!--subsidized or unsub(drop down) plus rate for one loan-->
+                    <select name="typeLoan" id="typeLoan">
+                        <option value="unsub">Unsubsidized</option>
+                        <option value="sub">Subsidized</option>
+                    </select>
+                <br>
+                <input type="text" name="typeLoanText" id="typeLoanText"
+                    placeholder="Enter amount here" value="" size = 15vw title="Enter all loans recieved">
+                <br><br>
+                </p>
+                <!--misc is income/allowance-->
+                <p>Income/Allowance:
+                    <select name="typeMisc" id="typeMisc">
+                        <option value="monthly">Monthly</option>
+                        <option value="semester">Semester</option>
+                    </select>
+                <br>
+                <input type="text" name="misc" id="misc"
+                    placeholder="Enter amount here" value="" size = 15vw title="Enter extra funds here ex. shopping, gifts, etc.">
+                <br><br>
+                </p>
+        
+                <button onclick="submit()">Submit</button>
+            </div>
+
+            
+        </div>
+        <div id="right" ><div class="money_remaining"><p>Remaining Money: $<span id = "money"></p></div>
+            <form action="#2">
+                <div class="moneydrop"> <p>Food/Necessities: <span id="fod"></span>(%)
+                    <output type="text" name="food_amount"
+                    placeholder="Enter amount here" value="" size = 6vw title="Money available"> </output></div>
+                </p>
+                <div class="rangecont">
+                    <input type="range" min="0" max="100" value = "50" class ="range" id ="food"><p>$<span id = "foody"></span></p>
+                </div>
+                
+                
+                <p>Savings: <span id="save"></span>(%)
+                </p>
+                <div class="rangecont">
+                    <input type="range" min="0" max="100" value = "20" class ="range" id ="saving"><p>$<span id = "savey"></span></p>
+                </div>
+
+                
+
+                <p>Investing: <span id="investing"></span>(%)
+                </p>
+                <div class="rangecont">
+                    <input type="range" min="0" max="100" value = "0" class ="range" id ="invest"><p>$<span id = "investy"></span></p>
+                </div>
+                
+
+
+                <p>Entertainment: <span id="ent"></span>(%)
+                </p>
+
+                <div class="rangecont">
+                    <input type="range" min="0" max="100" value = "30" class ="range" id ="entertain"><p>$<span id = "enty"></span>
+                </div>
+            </form>
+        </div>
+
+        <div id="bottom"><h4><strong>Why Financial Literacy Matters to YOU</strong></h4>
+                
+                <p>Developing financial literacy can help you budget while in college. This knowledge can assist you in saving money, 
+                resolving student loans after graduation, and investing into wealth-building opportunities. </p>
+                <p>There is a common known rule for mananging your money which is allocating 50% of your money to necessary fixed expenses, 20% in savings, and 30% in discretionary spending. While this practice is known for keeping stability in one's finances, it is highly encouraged for you to do your own research and due diligence. The makers of this site are not licensed to give the professional financial advice that financial institutions can. <br>
+                Some recommended market insights can be found at <a href="https://www.pimco.com/en-us/insights/economic-and-market-commentary" target="_blank" rel="noopener noreferrer">PIMCO</a> where information regarding professional opinions can be absorbed.</p>
+                
+            
+                
+        </div>
+    </div>
+
+
+    
+
+
+
+    
+
+
+    <script>
+        async function submit ()
+        {
+            console.log("SUBMITTING!!!!")
+            var tuition_amount = document.getElementById("tuition_amount").value;
+
+            var tuition = document.getElementById("tuition");
+            //var tut = tuition.value;
+
+            var tuitionDrop = tuition.options[tuition.selectedIndex].text;
+        
+            var rentText = document.getElementById("rentText").value;
+            var rent = document.getElementById("rentDrop");
+        
+            var rentDrop = rent.options[rent.selectedIndex].text;
+
+            var aidType = document.getElementById("aidType");
+            var aidTypeDrop = aidType.options[aidType.selectedIndex].text;
+            var aidTypeText = document.getElementById("aidTypeText").value;
+
+            var typeLoan = document.getElementById("typeLoan");
+            var typeLoanDrop = typeLoan.options[typeLoan.selectedIndex].text;
+            var typeLoanText = document.getElementById("typeLoanText").value;
+
+            var misc = document.getElementById("misc").value;
+            var typeMisc = document.getElementById("typeMisc");
+            var miscDrop = typeMisc.options[typeMisc.selectedIndex].text;
+            
+            var data = {
+                tuition_amount: tuition_amount,
+                //tuition: tuition,
+                tuitionDrop: tuitionDrop,
+                rentText: rentText,
+                //rent: rent,
+                rentDrop: rentDrop,
+                //aidType: aidType,
+                aidTypeDrop: aidTypeDrop,
+                aidTypeText: aidTypeText,
+                //typeLoan: typeLoan,
+                typeLoanDrop: typeLoanDrop,
+                typeLoanText: typeLoanText,
+                misc: misc,
+                //typeMisc: typeMisc,
+                miscDrop: miscDrop
+
+            };
+            
+            var response = await fetch('http://localhost:5000/evaluate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            var data = await response.json();
+            data = Math.round(data)
+            var b = document.getElementById("money");
+            b.innerHTML = data;
+
+            console.log(data);
+
+                // .then((response) => response.json())
+                // .then((data) => {
+                //     console.log('Success:', data);
+                // })
+                // .catch((error) => {
+                //     console.error('Error:', error);
+                // });
+
+                var food_money = document.getElementById("foody");
+                food_money.innerHTML = Math.round(data * .5)
+                
+                var food = document.getElementById("food");
+                var output = document.getElementById("fod")
+                
+                output.innerHTML = food.value;
+                
+                var saving_money = document.getElementById("savey")
+                saving_money.innerHTML = Math.round(data * .2)
+                
+                var saving = document.getElementById("saving")
+                var out = document.getElementById("save")
+                
+                out.innerHTML = saving.value;
+                
+                var invest_money = document.getElementById("investy")
+                invest_money.innerHTML = 0
+                var invest = document.getElementById("invest")
+                var output1 = document.getElementById("investing")
+                output1.innerHTML = invest.value;
+
+                var ent_money = document.getElementById("enty");
+                ent_money.innerHTML = Math.round(data * .3)
+                var entertain = document.getElementById("entertain")
+                var output2 = document.getElementById("ent")
+                output2.innerHTML = entertain.value;
+                
+                var remainder = document.getElementById("entertain")
+                var output2 = document.getElementById("ent")
+                output2.innerHTML = entertain.value;
+
+                food.oninput = function() {
+                    output.innerHTML = this.value
+                    food_money.innerHTML = Math.round((this.value/100)*data)
+                  
+                }
+
+                saving.oninput = function() {
+                    out.innerHTML = this.value
+                    saving_money.innerHTML = Math.round((this.value/100)*data)
+                }
+
+
+                invest.oninput = function() {
+                    output1.innerHTML = this.value
+                    invest_money.innerHTML = Math.round((this.value/100)*data)
+                    
+                }
+
+                entertain.oninput = function() {
+                    output2.innerHTML = this.value
+                    ent_money.innerHTML = Math.round((this.value/100)*data)
+                }
+                
+               
+                
+                
+
+
+        }
+
+
+
+    </script>
+</body>
+  
+</html>         

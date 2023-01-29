@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        College input money stuff
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            text-align: left;
+            margin-left: 2vw;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>PIMCO FinTech</h1>
+
+    <div id="left">
+        <form action="#">
+            <p>Tuition:
+                <select name="tuition" id="tuition">
+                    <option value="tuition_year">Year Term</option>
+                    <option value="tuition_month">10 Month Term</option>
+                </select><!--(include books and miscellaneous costs)-->
+                <br>
+            <input type="text" name="tuition" id="tuition_amount"
+                placeholder="Enter amount here" value="" size = 15vw title = "Enter total cost of tuition">
+                <br><br>
+            </p>
+      
+            <p>Rent/Utilities: 
+                <select name="rentDrop" id="term">
+                    <option value="fullYear">Year Term</option>
+                    <option value="ten_month">10 Month Term</option>
+                </select>
+                <br>
+            <input type="text" name="rentText"
+                placeholder="Enter amount here" value="" size = 15vw title = "Enter total cost of utilities/rent ex. Electricity, water, repair...">
+                <br><br>
+            </p>
+            
+
+           <p>Scholarships/Aid: <!--(drop down for specific semester)-->
+            <select name="aidType" id="aidType">
+                <option value="semester">Semester</option>
+                <option value="year">Year</option>
+            </select>
+            <br>
+            <input type="text" name="aidTypeText"
+                placeholder="Enter amount here" value="" size = 15vw title="Enter amount of scholarships/aid received">
+            <br><br>
+            </p>
+    
+            <p>Loans: <!--subsidized or unsub(drop down) plus rate for one loan-->
+                <select name="typeLoan" id="typeLoan">
+                    <option value="unsub">Unsubsidized</option>
+                    <option value="sub">Subsidized</option>
+                </select>
+            <br>
+            <input type="text" name="typeLoanText"
+                placeholder="Enter amount here" value="" size = 15vw title="Enter all loans recieved">
+            <br><br>
+            </p>
+    
+            <p>Daily-use/Miscellaneous:
+            <br>
+            <input type="text" name="misc"
+                placeholder="Enter amount here" value="" size = 15vw title="Enter extra funds here ex. shopping, gifts, etc.">
+            <br><br>
+            </p>
+    
+            <input type="submit" value="Submit" onclick="submit()">
+        </form>
+
+        
+    </div>
+    <div id="right" ><div class="money_remaining"><h2><strong>Money Remaining</strong></h2></div>
+        <form action="#2">
+            <div class="moneydrop"> <p>Food/Necessities:
+                <output type="text" name="food_amount"
+                placeholder="Enter amount here" value="" size = 6vw title="Money available"> </output></div>
+            </p>
+            <div class="rangecont">
+                <input type="range" min="1" max="100" value = "50" class ="range" id ="myRange">
+            </div>
+            <br>
+            
+            <p>Savings
+            </p>
+            <div class="rangecont">
+                <input type="range" min="1" max="100" value = "50" class ="range" id ="myRange">
+            </div>
+            <br>
+
+            <p>Investing
+            </p>
+            <div class="rangecont">
+                <input type="range" min="1" max="100" value = "50" class ="range" id ="myRange">
+            </div>
+            <br>
+
+
+            <p>Entertainment
+            </p>
+
+            <div class="rangecont">
+                <input type="range" min="1" max="100" value = "50" class ="range" id ="myRange">
+            </div>
+        </form>
+    </div>
+
+
+    
+
+
+
+    <br>
+
+
+    <script>
+        async function submit ()
+        {
+            var tuition_amount = document.getElementById("tuition_amount").value;
+
+            var data = {
+                tuition_amount: tuition_amount
+            };
+            
+            await fetch('https://localhost:3000/evaluate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                // .then((response) => response.json())
+                // .then((data) => {
+                //     console.log('Success:', data);
+                // })
+                // .catch((error) => {
+                //     console.error('Error:', error);
+                // });
+
+        }
+
+
+
+    </script>
+</body>
+  
+</html>         

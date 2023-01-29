@@ -1,0 +1,111 @@
+
+body{
+    background:conic-gradient(180deg, grey, red);
+    color:black;
+}
+#grad{
+    color:black;
+}
+#termType{
+    position:absolute;
+}
+#top{
+    width:80vw;
+    height:20vh;
+}
+
+#left{
+     flex: 1; 
+     left:4.5vw; /* used to be 15*/
+     width:40vw;    
+     /*background-color:*/
+     height:70vh;
+     position:absolute;
+     top:10vh;
+     text-align: center;
+     background-color: white;
+     padding: 20px;
+     border-style: groove;
+     border-width: 12px;
+     border-color: maroon;
+     
+}
+
+
+
+#right{
+    flex: 1;
+    width:40vw;
+    right:4.5vw;
+    height:70vh;
+    position:absolute;
+    top:10vh;
+   /* background-color:*/
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-style: groove;
+    border-width: 12px;
+    border-color: maroon;
+    
+
+}
+
+#bottom{
+    flex: 1;
+    color: white;
+    text-align: bottom;
+    width:100vw;
+    height:12vh;
+    position:absolute;
+    top:88vh;
+}
+
+h1{
+    text-align:center;
+    font-family:"Helvetica";
+    color:white;
+    top:10vh;
+    border-color:red;
+    border-width:.25vw;
+    border-style:double;
+}
+#rangecont {
+    width: 100%
+}
+
+#range {
+    width: 100%;
+    height: 10px;
+    background-color: white;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+    -webkit-transition: .2s;
+    
+}
+
+#range:hover {
+    opacity: 1;;
+}
+#range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 23px;
+    height: 24px;
+    border: 0;
+    background-color: gray;
+    cursor: pointer;
+  }
+#slider::-moz-range-thumb {
+    width: 23px;
+    height: 25px;
+    border: 0;
+    background-color: gray;
+    cursor: pointer;
+}
+
+.money_remaining{
+    font-size: 25px;
+    font-family: "Georgia";
+}
